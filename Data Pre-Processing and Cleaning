@@ -1,0 +1,64 @@
+import numpy as np
+np.random.seed(42)
+import tensorflow as tf
+tf.random.set_seed(42)
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+import seaborn as sns
+import pandas as pd
+
+  # Get the file path
+file_path = 'metamorphosis_clean.txt'
+
+# Open the file
+with open(file_path, 'r', encoding='utf-8') as f:
+    text = f.read()
+
+# Print the text
+print(text)
+
+
+
+  #Data Preprocessing
+character = sorted(list(set(text)))
+char_indices = dict((c, i) for i, c in enumerate(character))
+indices_char = dict((i, c) for i, c in enumerate(character))
+
+print(f'unique chars: {len(character)}')
+
+
+  #chunk 40 characters with 3 sequences
+seq_len = 40
+step = 3
+sentences = []
+next_chars = []
+for i in range(0, len(text) - seq_len, step):
+    sentences.append(text[i: i + seq_len ])
+    next_chars.append(text[i + seq_len])
+print(f'num training examples: {len(sentences)}')
+
+
+  # generating our features and labels
+#one hot encoding
+X = np.zeros((len(sentences), seq_len, len(character)), dtype=bool)
+y = np.zeros((len(sentences), len(character)), dtype=bool)
+for i, sentence in enumerate(sentences):
+    for t, char in enumerate(sentence):
+        X[i, t, char_indices[char]] = 1
+    y[i, char_indices[next_chars[i]]] = 1
+
+sentences[124]
+next_chars[100]
+
+
+
+  #one hot encoded data
+X[0][0]
+  #one hot encoded data
+y[0]
+
+
+  X.shape
+  y.shape
+  
