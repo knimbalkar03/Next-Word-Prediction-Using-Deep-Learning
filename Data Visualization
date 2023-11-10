@@ -1,0 +1,58 @@
+acc = history['accuracy']
+val_acc = history['val_accuracy']
+loss = history['loss']
+val_loss = history['val_loss']
+epochs = range(len(acc))
+
+
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(20, 6))
+ax[0].plot(epochs, acc, 'y', label='Training accuracy')
+ax[0].plot(epochs, val_acc, 'g', label='Validation accuracy')
+ax[0].legend(loc=0)
+ax[1].plot(epochs, loss, 'y', label='Training loss')
+ax[1].plot(epochs, val_loss, 'g', label='Validation loss')
+ax[1].legend(loc=0)
+
+plt.suptitle('Training and validation')
+plt.show()
+
+
+
+import matplotlib.pyplot as plt
+
+# Assuming you have a list of accuracy values
+accuracy_values = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+
+# Create x-axis values (time or iteration steps)
+x_values = range(1, len(accuracy_values) + 1)
+
+# Plotting  the line chart
+plt.plot(x_values, accuracy_values, marker='o')
+
+# Adding labels and title
+plt.xlabel('Time or Iteration Steps')
+plt.ylabel('Accuracy')
+plt.title('Accuracy Over Time')
+
+# Display the plot
+plt.show()
+
+
+# Calculate accuracy for each model
+model_names = ['Model', 'naive_bayes']
+accuracies = [0.7411604523658752,0.04627249357326478]
+
+# Plot accuracy
+plt.figure(figsize=(8, 6))
+plt.bar(model_names, accuracies)
+plt.xlabel('Models')
+plt.ylabel('Accuracy')
+plt.title('Comparison of Model Accuracies')
+plt.show()
+
+# Plot the metrics
+plt.figure(figsize=(8, 6))
+sns.barplot(x='Metric', y='Score', data=metrics_df)
+plt.title('Evaluation Metrics')
+plt.ylim([0, 1])  # Set the y-axis limit between 0 and 1
+plt.show()
